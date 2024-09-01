@@ -20,6 +20,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run PyInstaller
         run: |
+          pip install PyInstaller
           python -m PyInstaller dunkScout.spec
       - uses: actions/upload-artifact@v2
         with:
