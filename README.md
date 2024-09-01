@@ -96,6 +96,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 # Changelog
 
+- Version 0.2: Added prompt for keypress at end of execution, so exe doesn't
+exit immediately after completing, 9/1/24
+
 - Version 0.1: Added executable version from PyInstaller for those
 without Python, made all CLI arguments optional, 9/1/24
 
