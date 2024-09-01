@@ -43,6 +43,8 @@ This project was surprisingly much more involved than initially expected...
 
 [Charles Proxy](https://www.charlesproxy.com/): Hosted proxy to log API requests.
 
+[PyInstaller](https://pyinstaller.org/en/stable/): Used to make 'no python' executable version.
+
 [Dunkin'](https://www.dunkindonuts.com/en): Last but not least... I'll admit, as a non-New Englander, I didn't understand
 the hype. But I've been indoctrinated. Even as a "coffee snob", there is a place for Dunkin when you want a sweeter drink from
 a shop that isn't $10.
