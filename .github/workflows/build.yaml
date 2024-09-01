@@ -32,7 +32,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: {{ github.event.input.commit_sha }}
+          tag_name: ${{ github.event.input.commit_sha }}
           release_name: ${{ github.event.input.commit_sha }}
           overwrite: true
           body: |
