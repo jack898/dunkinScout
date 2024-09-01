@@ -33,9 +33,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.input.commit_sha }}
-          release_name: ${{ github.event.input.commit_sha }}
-          overwrite: true
+          tag_name: ${{ github.sha }}
+          release_name: ${{ github.sha }}
           body: |
             Release ver ${{ github.event.input.commit_sha }}
           draft: false
