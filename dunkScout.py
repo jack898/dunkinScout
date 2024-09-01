@@ -67,6 +67,7 @@ def main():
         print('Search failed. Perhaps there are no Dunkins in this area?')
     else:
         print(f'\n\nThe cheapest location for {args.item} is ${lowest_price} at {lowest_price_store[0]}, {lowest_price_store[1]:.2f}mi away.')
+    input('Press any key to exit...')
 
 
         
