@@ -41,7 +41,7 @@ the hype. But I've been indoctrinated. Even as a "coffee snob", there is a place
 a shop that isn't $10.
 
 # Procedure
-- Dunkin hosts no menu (with prices) on any website, so I needed to sniff the menu API from their app.
+- Dunkin hosts no menu (with prices) on any website, so I needed to sniff the menu API from their app. I could not find any public documentation of their mobile app API anywhere.
 
 - I first tried to set up a proxy with Charles Proxy and sniff from my iOS device--however, the requests were encrypted as Dunkin
 uses SSL pinning on their app. 
