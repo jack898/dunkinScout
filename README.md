@@ -8,14 +8,21 @@ even at stores less than a mile apart. Save some money with this tool!
 - For drinks, shows the price for a small.
 - Price shown is before any taxes/discounts.
 
+# Easy Usage (if you do not want to install Python)
+(Windows only, for now)
+1. Download dunkScout.exe from the "executable" folder
+2. Simply double click and it should prompt you for the latitude, longitude,
+item name, and distance.
 
 # Usage
-python dunkScout.py <-lat LAT> <-long LONG> [-item ITEM] [-dist DIST]
+python dunkScout.py [-lat LAT] [-long LONG] [-item ITEM] [-dist DIST]
   * Example: python dunkScout.py -lat 42.161621 -long -71.147720 -item "Original Blend Iced Coffee" -dist 2
     - lat: Latitude for your current location
     - long: Longitude for your current location
     - item: Name of item to price out (must be exact match to menu name--unicode characters should not be encoded)
     - dist: Maximum search radius, in miles
+  
+You can also launch it with no arguments, and you will be prompted for each argument before it searches.
 
 # Installation/Dependencies
 Download and install [Python](https://www.python.org/downloads/) >=3.6, and add it
@@ -41,7 +48,7 @@ the hype. But I've been indoctrinated. Even as a "coffee snob", there is a place
 a shop that isn't $10.
 
 # Procedure
-- Dunkin hosts no menu (with prices) on any website, so I needed to sniff the menu API from their app. I could not find any public documentation of their mobile app API anywhere.
+- Dunkin hosts no menu (with prices) on any website, so I needed to sniff the menu API from their app.
 
 - I first tried to set up a proxy with Charles Proxy and sniff from my iOS device--however, the requests were encrypted as Dunkin
 uses SSL pinning on their app. 
@@ -84,3 +91,10 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# Changelog
+
+- Version 0.1: Added executable version from PyInstaller for those
+without Python, made all CLI arguments optional, 9/1/24
+
+- Version 0.0: First version, 8/31/24

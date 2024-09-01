@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Finds the cheapest Dunkin in your area by comparing the (pre-tax) price of 
 # an item across nearby locations
-# Usage: python dunkScout.py <-lat LAT> <-long LONG> [-item ITEM] [-dist DIST]
+# Usage: python dunkScout.py [-lat LAT] [-long LONG] [-item ITEM] [-dist DIST]
 
 import argparse
 import time
@@ -21,11 +21,25 @@ DEFAULT_ITEM = "Original Blend Iced Coffee"
 def main():
     global DEFAULT_ITEM
     parser = argparse.ArgumentParser(description='Find the cheapest Dunkin in your area')
-    parser.add_argument('-lat', type=float, help='Latitude of your location', required=True)
-    parser.add_argument('-long', type=float, help='Longitude of your location', required=True)
+    parser.add_argument('-lat', type=float, help='Latitude of your location')
+    parser.add_argument('-long', type=float, help='Longitude of your location')
     parser.add_argument('-item', type=str, help='Item to compare prices for', default=DEFAULT_ITEM)
     parser.add_argument('-dist', type=int, help='Max distance away, in freedom units (stores further will not be searched)', default=5)
     args = parser.parse_args()
+
+    # Accept non-CLI arguments
+    if args.lat is None:
+        args.lat = float(input("Please enter your latitude: "))
+    if args.long is None:
+        args.long = float(input("Please enter your longitude: "))
+    if args.item == DEFAULT_ITEM:
+        custom_item = input(f"Do you want to use the default item '{DEFAULT_ITEM}'? (Press enter to accept or type a different item): ")
+        if custom_item:
+            args.item = custom_item
+    if args.dist == 5:
+        custom_dist = input(f"Do you want to use the default distance of 5 miles? (Press enter to accept or type a different distance): ")
+        if custom_dist:
+            args.dist = int(custom_dist)
 
     store_list = find_locations(args.lat, args.long, args.dist)
     lowest_price = float('inf')
