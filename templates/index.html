@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+
+  <body>
+    <h1>dunkinScout</h1>
+    <form id="form">
+      <p>
+        <label for="menuItem">Menu item</label>
+        <select name="menuItem" id="menuItem" autocomplete="on">
+          {% for item in menu %}
+          <option {% if item==default_menu_item %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </p>
+      <p>
+        <label for="distance">Distance from your current location</label>
+        <input type="number" min="0.5" max="10" step="0.5" value="5" name="distance" id="distance"></input>
+      </p>
+      <p>
+        <button id="show">Show me local prices</button><br />
+      </p>
+    </form>
+    <p id="status"></p>
+    <ul id="results"></ul>
+  </body>
+
+  <script>
+async function showPrices(event) {
+  event.preventDefault();
+
+  const priceUrl = new URL("prices", window.location);
+  const status = document.querySelector("#status");
+  const results = document.querySelector("#results");
+
+  async function success(position) {
+    const form = document.querySelector("#form");
+    
+
+    const searchParams = new URLSearchParams();
+    searchParams.append("distance", form.elements.distance.valueAsNumber);
+    searchParams.append("latitude", Number.parseFloat(position.coords.latitude).toFixed(6));
+    searchParams.append("longitude", Number.parseFloat(position.coords.longitude).toFixed(6));
+    searchParams.append("menuItem", form.elements.menuItem.value);
+    status.textContent = "Retrieving prices";
+
+    const url = new URL(priceUrl);
+    url.search = searchParams.toString();
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.debug(data);
+      const fragment = document.createDocumentFragment();
+      for (const store of data) {
+        const li = document.createElement('li');
+        li.textContent = `$${store.price} at ${store.address.line1}, ${store.address.city}, ${store.address.state} ${store.address.postalCode} (${Number.parseFloat(store.distance).toFixed(2)}mi away)`;
+        fragment.appendChild(li);
+      }
+      status.textContent = "";
+      results.replaceChildren(fragment);
+    } catch (error) {
+      status.textContent = `Unable to retrieve prices: ${error.message}`;
+    }
+  }
+
+  async function error() {
+    status.textContent = "Unable to retrieve your location";
+  }
+
+  if (!navigator.geolocation) {
+    status.textContent = "Geolocation is not supported by your browser";
+  } else {
+    status.textContent = "Locating…";
+    results.replaceChildren();
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+}
+
+document.querySelector("#show").addEventListener("click", showPrices);
+  </script>
+</html>
