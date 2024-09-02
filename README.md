@@ -10,7 +10,7 @@ even at stores less than a mile apart. Save some money with this tool!
 
 # Easy Usage (if you do not want to install Python)
 (Windows only, for now)
-1. Download dunkScout.exe from the "executable" folder
+1. Download dunkScout.exe from the Releases
 2. Simply double click and it should prompt you for the latitude, longitude,
 item name, and distance.
 
