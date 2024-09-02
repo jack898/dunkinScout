@@ -12,6 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Set output
+        shell: bash
         run: |
           VER=$(cat .version)
           echo "VERSION=$VER" >> $GITHUB_ENV
