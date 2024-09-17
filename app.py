@@ -47,7 +47,8 @@ def prices():
         store['price'] = _get_price(store['storeId'], menu_item)
     # `stores` comes pre-sorted by distance, so when they all have the same
     # price this returns in distance order
-    stores.sort(key=lambda s: s['price'])
+    stores = [s for s in stores if s['price'] is not None]
+    stores.sort(key=lambda s: s['price'] or float('inf'))
     return stores
 
 
