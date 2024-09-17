@@ -2,7 +2,8 @@ name: Build Workflow
 
 on:
   push:
-    #    branches: master
+    paths:
+      - '.version'
 
 jobs:
   build-windows:
@@ -10,6 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Set output
+        shell: bash
+        run: |
+          VER=$(cat .version)
+          echo "VERSION=$VER" >> $GITHUB_ENV
       - name: Install Python
         uses: actions/setup-python@v1
         with:
@@ -33,10 +39,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
-          release_name: ${{ github.sha }}
+          tag_name: ${{ env.VERSION }}
+          release_name: DunkinScout v${{ env.VERSION }}
           body: |
-            Release ver ${{ github.event.input.commit_sha }}
+            Release version v${{ env.VERSION }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -45,7 +51,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{steps.create_release.outputs.upload_url}}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/dunkScout.exe
           asset_name: dunkScout.exe
           asset_content_type: application/zip
