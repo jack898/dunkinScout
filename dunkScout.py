@@ -4,9 +4,10 @@
 # Usage: python dunkScout.py [-lat LAT] [-long LONG] [-item ITEM] [-dist DIST]
 
 import argparse
-import time
+import pgeocode
+from numpy import isnan
 from urllib.request import Request, urlopen
-from urllib.error import URLError, HTTPError
+from urllib.error import HTTPError
 import json
 
 
@@ -21,13 +22,26 @@ DEFAULT_ITEM = "Original Blend Iced Coffee"
 def main():
     global DEFAULT_ITEM
     parser = argparse.ArgumentParser(description='Find the cheapest Dunkin in your area')
+    parser.add_argument('-zip', type=str, help='USA Zip code of your location')
     parser.add_argument('-lat', type=float, help='Latitude of your location')
     parser.add_argument('-long', type=float, help='Longitude of your location')
     parser.add_argument('-item', type=str, help='Item to compare prices for', default=DEFAULT_ITEM)
     parser.add_argument('-dist', type=int, help='Max distance away, in freedom units (stores further will not be searched)', default=5)
     args = parser.parse_args()
+    nomi = pgeocode.Nominatim('us')
 
     # Accept non-CLI arguments
+    if args.zip is None:
+        args.zip = str(input("Please enter your US zip code (leave blank to enter lat/long): "))
+        
+    if args.zip is not None:
+        postal_code_data = nomi.query_postal_code(args.zip)
+        if isnan(postal_code_data.latitude) or isnan(postal_code_data.longitude):
+            print("zip code not found")
+        else:
+            args.lat = float(postal_code_data.latitude)
+            args.long = float(postal_code_data.longitude)
+            
     if args.lat is None:
         args.lat = float(input("Please enter your latitude: "))
     if args.long is None:
