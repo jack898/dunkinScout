@@ -2,7 +2,7 @@ altgraph==0.17.4
 certifi==2024.8.30
 charset-normalizer==3.3.2
 idna==3.10
-numpy==2.1.1
+numpy==2.1.2
 packaging==24.1
 pandas==2.2.3
 pgeocode==0.5.0
