@@ -1,6 +1,6 @@
 altgraph==0.17.4
 certifi==2024.8.30
-charset-normalizer==3.3.2
+charset-normalizer==3.4.0
 idna==3.10
 numpy==2.1.1
 packaging==24.1
