@@ -7,7 +7,7 @@ packaging==24.1
 pandas==2.2.3
 pgeocode==0.5.0
 pyinstaller==6.10.0
-pyinstaller-hooks-contrib==2024.8
+pyinstaller-hooks-contrib==2024.9
 python-dateutil==2.9.0.post0
 pytz==2024.2
 requests==2.32.3
