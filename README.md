@@ -1,4 +1,4 @@
-# DunkinScout
+# [DunkinScout](https://nmul1801.github.io/dunkin-ng/)
 Find the cheapest Dunkin near you for any particular menu item.. or 
 just an Iced Original, as a benchmark.
 
@@ -7,6 +7,10 @@ even at stores less than a mile apart. Save some money with this tool!
 
 - For drinks, shows the price for a small.
 - Price shown is before any taxes/discounts.
+
+# Web app
+Thanks to fellow developer [@nmul1801](https://github.com/nmul1801), DunkinScout is now available online at [https://nmul1801.github.io/dunkin-ng/](https://nmul1801.github.io/dunkin-ng/)!
+
 
 # Easy Usage (if you do not want to install Python)
 (Windows only, for now)
