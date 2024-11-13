@@ -1,3 +1,4 @@
+#### _As seen in the [Boston Globe ](https://www.bostonglobe.com/2024/09/17/business/dunkin-prices-cheap-reddit-tufts-dunkinscout/) and the [Daily Mail!](https://www.dailymail.co.uk/news/article-13860003/dunkin-donuts-trick-cheapest-stores.html)_
 # [DunkinScout](https://nmul1801.github.io/dunkin-ng/)
 Find the cheapest Dunkin near you for any particular menu item.. or 
 just an Iced Original, as a benchmark.
