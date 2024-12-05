@@ -11,6 +11,6 @@ pyinstaller-hooks-contrib==2024.8
 python-dateutil==2.9.0.post0
 pytz==2024.2
 requests==2.32.3
-six==1.16.0
+six==1.17.0
 tzdata==2024.2
 urllib3==2.2.3
